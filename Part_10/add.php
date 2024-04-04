@@ -41,6 +41,10 @@ if (isset($_POST['submit'])) {
         }
         // echo htmlspecialchars($_POST['ingredients']), "<br />";
     }
+
+    if (!array_filter($errors)) {
+        header('Location: index.php');
+    }
 }
 
 
