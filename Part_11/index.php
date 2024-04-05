@@ -1,37 +1,32 @@
 <?php
 
-echo $_SERVER['SERVER_NAME'] . "<br>";
-echo $_SERVER['REQUEST_METHOD'] . "<br>";
-echo $_SERVER['SCRIPT_FILENAME'] . "<br>";
-echo $_SERVER['PHP_SELF'] . "<br>";
+$file = 'text.txt';
+$new_file = 'file_copy.txt';
 
-if (isset($_POST['submit'])) {
+$quotes = @readfile($file);
+echo $quotes;
 
-    session_start();
+//=======
 
-    $_SESSION['name'] = $_POST['name'];
+if (file_exists($file)) {
 
-    echo $_SESSION['name'];
+    echo readfile($file) . "<br>";
+
+    $res = copy($file, $new_file);
+    var_dump($res);
+    echo $res . "<br>";
+
+    echo "real path to file: " . realpath($file) . "<br>";
+
+    echo "file size: " . filesize($file) . "<br>";
+
+    $res = rename($new_file, 'test.txt');
+    echo "rename file result:<br>";
+    var_dump($res);
+} else {
+    echo "file does not exist";
 }
 
-?>
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PHP-MySQL Tutorals</title>
-</head>
-
-<body>
-
-    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-        <input type="text" name="name">
-        <input type="submit" value="submit" name="submit">
-    </form>
-
-</body>
-
-</html>
+$res = mkdir('quotes');
+echo "created new dir result:<br>";
+var_dump($res);
