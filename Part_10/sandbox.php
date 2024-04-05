@@ -1,17 +1,19 @@
 <?php
 
-echo $_SERVER['SERVER_NAME'] . "<br>";
-echo $_SERVER['REQUEST_METHOD'] . "<br>";
-echo $_SERVER['SCRIPT_FILENAME'] . "<br>";
-echo $_SERVER['PHP_SELF'] . "<br>";
+$score = 50;
 
+// $val = $score > 40 ? 'high score!' : 'low score :(';
+// echo $val;
+
+// echo $score > 40 ? 'high score!' : 'low score :(';
 if (isset($_POST['submit'])) {
 
     session_start();
 
     $_SESSION['name'] = $_POST['name'];
 
-    echo $_SESSION['name'];
+    // echo $_SESSION['name'];
+    header('Location: index.php');
 }
 
 ?>
@@ -22,15 +24,18 @@ if (isset($_POST['submit'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PHP-MySQL Tutorals</title>
+    <title>PHP-MySQL Tutorals - Sandbox</title>
 </head>
 
 <body>
+
 
     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
         <input type="text" name="name">
         <input type="submit" value="submit" name="submit">
     </form>
+
+    <p><?php echo $score > 40 ? 'high score!' : 'low score :('; ?></p>
 
 </body>
 

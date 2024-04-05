@@ -6,7 +6,14 @@ $score = 50;
 // echo $val;
 
 // echo $score > 40 ? 'high score!' : 'low score :(';
+if (isset($_POST['submit'])) {
 
+    session_start();
+
+    $_SESSION['name'] = $_POST['name'];
+
+    echo $_SESSION['name'];
+}
 
 ?>
 
@@ -21,6 +28,11 @@ $score = 50;
 
 <body>
 
+
+    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+        <input type="text" name="name">
+        <input type="submit" value="submit" name="submit">
+    </form>
     <p><?php echo $score > 40 ? 'high score!' : 'low score :('; ?></p>
 
 </body>
